@@ -1,9 +1,11 @@
 //! A module for implementing some helpful functions for `monotree`.
 use crate::*;
 use num::{NumCast, PrimInt};
-use rand::Rng;
 use std::cmp;
 use std::ops::Range;
+
+#[cfg(feature = "utils_random")]
+use rand::Rng;
 
 #[macro_export]
 /// std::cmp::max() extension for use with multiple arguments.
@@ -78,21 +80,25 @@ pub fn cast<T: NumCast, U: NumCast>(n: T) -> U {
     NumCast::from(n).expect("cast(): Numcast")
 }
 
+#[cfg(feature = "utils_random")]
 /// Generate a random byte based on `rand::random`.
 pub fn random_byte() -> u8 {
     rand::random::<u8>()
 }
 
+#[cfg(feature = "utils_random")]
 /// Generate random bytes of the given length.
 pub fn random_bytes(n: usize) -> Vec<u8> {
     (0..n).map(|_| random_byte()).collect()
 }
 
+#[cfg(feature = "utils_random")]
 /// Generate a random `Hash`, byte-array of `HASH_LEN` length.
 pub fn random_hash() -> Hash {
     slice_to_hash(&random_bytes(HASH_LEN))
 }
 
+#[cfg(feature = "utils_random")]
 /// Generate a vector of random `Hash` with the given length.
 pub fn random_hashes(n: usize) -> Vec<Hash> {
     (0..n).map(|_| random_hash()).collect()
@@ -105,6 +111,7 @@ pub fn slice_to_hash(slice: &[u8]) -> Hash {
     hash
 }
 
+#[cfg(feature = "utils_random")]
 /// Shuffle a slice using _Fisher-Yates_ algorithm.
 pub fn shuffle<T: Clone>(slice: &mut [T]) {
     let mut rng = rand::thread_rng();

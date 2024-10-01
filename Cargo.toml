@@ -11,7 +11,7 @@ keywords = ["sparse", "merkle", "radix", "blockchain", "merkletrie"]
 categories = ["algorithms", "data-structures", "cryptography::cryptocurrencies"]
 
 [dependencies]
-rand = "0.7.3"
+rand = { version = "0.7.3", optional = true }
 hex = "0.4.1"
 num = "0.2.1"
 hashbrown = "0.7"
@@ -29,7 +29,8 @@ paste = "0.1.7"
 criterion = "0.3"
 
 [features]
-default = []
+default = ["rand"]
+utils_random = ["rand"]
 db_rocksdb = ["rocksdb"]
 db_sled = ["sled"]
 

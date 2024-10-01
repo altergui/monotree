@@ -1,3 +1,4 @@
+#![cfg(feature = "utils_random")]
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
 use monotree::database::{rocksdb::RocksDB, sled::Sled, MemoryDB};
 use monotree::hasher::*;

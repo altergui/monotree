@@ -1,3 +1,4 @@
+#![cfg(feature = "utils_random")]
 use monotree::database::{rocksdb::RocksDB, sled::Sled, MemoryDB};
 use monotree::hasher::*;
 use monotree::utils::*;
